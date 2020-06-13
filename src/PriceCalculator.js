@@ -6,7 +6,6 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Colla
 import { ArrowDownward, Info } from "@material-ui/icons";
 
 import StepContainer from "./StepContainer";
-import configs from './configs_hun';
 
 const useStyles = makeStyles(theme => ({
     tableRowBorder: {
@@ -78,6 +77,7 @@ const StyledTableBodyCell = withStyles({
 function PriceCalculator(props) {
     const classes = useStyles();
     const { unit, servicesPrices, additivePrices } = props;
+    const configs = props.configs;
     const labels = configs.labels;
     const { bottles } = configs;
     const { currency, title1, title2, title3, info1 } = labels;

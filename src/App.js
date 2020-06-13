@@ -10,9 +10,9 @@ const generateClassName = createGenerateClassName({
 
 const theme = createMuiTheme({
   palette: {
-    secondary: {     
+    secondary: {
       main: '#d62828'
-    },    
+    },
     text: {
       primary: '#555b6e'
     }
@@ -45,14 +45,30 @@ const GlobalCss = withStyles({
   },
 })(() => null);
 
+
 function App() {
+  const [configs, setConfigs] = React.useState();
+  const [dataLoaded, setDataLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch('https://api.npoint.io/d2c587adc85d94d83e6b')
+      .then(response => response.json())
+      .then((configs) => {
+        setConfigs(configs);
+        setDataLoaded(true);        
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, []);
+
   return (
     <div className="App">
       <main>
         <MuiThemeProvider theme={theme}>
           <StylesProvider generateClassName={generateClassName}>
             <GlobalCss />
-            <FruitCalculator />
+            {dataLoaded && <FruitCalculator configs={configs} />}
           </StylesProvider>
         </MuiThemeProvider>
       </main>

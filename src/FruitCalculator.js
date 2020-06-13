@@ -4,7 +4,6 @@ import { Container, Radio, RadioGroup, FormControlLabel } from "@material-ui/cor
 
 import StepContainer from "./StepContainer";
 import PriceCalculator from "./PriceCalculator";
-import configs from './configs_hun';
 
 const useStyles = makeStyles(theme => ({
   radioGroup: {
@@ -31,9 +30,8 @@ const StepContainerBox = styled(Container)(({
   }
 }));
 
-const { categories } = configs;
-
-function FruitCalculator() {
+function FruitCalculator({ configs }) {
+  const { categories } = configs;
   const classes = useStyles();
 
   const [selectedFruit, setSelectedFruit] = React.useState("malna");
@@ -64,7 +62,7 @@ function FruitCalculator() {
           })}
         </RadioGroup>
       </StepContainer>
-      <PriceCalculator selectedFruit={selectedFruit} {...categories[categories.findIndex(category => category.value === selectedFruit)].calculator} />
+      <PriceCalculator configs={configs} selectedFruit={selectedFruit} {...categories[categories.findIndex(category => category.value === selectedFruit)].calculator} />
     </StepContainerBox>
   );
 }
