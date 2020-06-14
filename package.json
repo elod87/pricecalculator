@@ -16,7 +16,6 @@
     "rewire": "^5.0.0",
     "styled-components": "^5.1.0"
   },
-  "homepage": "http://pres.elfruct.ro/react/",
   "scripts": {
     "start": "react-scripts start",
     "build": "node ./scripts/build-non-split.js",
