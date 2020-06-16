@@ -34,7 +34,9 @@ function FruitCalculator({ configs }) {
   const { categories } = configs;
   const classes = useStyles();
 
-  const [selectedFruit, setSelectedFruit] = React.useState("malna");
+  const firstValue = categories.find(category => category.hidden !== true).value;
+
+  const [selectedFruit, setSelectedFruit] = React.useState(firstValue);
 
   const handleRadioChange = event => {
     setSelectedFruit(event.target.value);
@@ -49,7 +51,7 @@ function FruitCalculator({ configs }) {
           onChange={handleRadioChange}
           className={classes.radioGroup}
         >
-          {categories.map((category, index) => {
+          {categories.filter(category => category.hidden !== true).map((category, index) => {            
             return (
               <StyledFormControlLabel
                 key={index}
